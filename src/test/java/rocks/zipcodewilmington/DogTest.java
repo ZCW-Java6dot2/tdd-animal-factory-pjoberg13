@@ -2,7 +2,12 @@ package rocks.zipcodewilmington;
 
 import org.junit.Assert;
 import org.junit.Test;
+import rocks.zipcodewilmington.animals.Animal;
+import rocks.zipcodewilmington.animals.Cat;
 import rocks.zipcodewilmington.animals.Dog;
+import rocks.zipcodewilmington.animals.Mammal;
+
+import java.util.Date;
 
 /**
  * @author leon on 4/19/18.
@@ -27,5 +32,85 @@ public class DogTest {
         // Then (we expect to get the given name from the dog)
         String dogName = dog.getName();
         Assert.assertEquals(dogName, givenName);
+    }
+
+    @Test
+    public void constructorTest() {
+        String givenName = "Toby";
+        Date givenBirthDate = new Date();
+        Integer givenID = 1;
+
+        Dog toby = new Dog(givenName, givenBirthDate, givenID);
+
+        String retrievedName = toby.getName();
+        Date retrievedBirthDate = toby.getBirthDate();
+        Integer retrievedId = toby.getId();
+
+        Assert.assertEquals(givenName, retrievedName);
+        Assert.assertEquals(givenBirthDate, retrievedBirthDate);
+        Assert.assertEquals(givenID, retrievedId);
+    }
+
+    @Test
+    public void speakTest() {
+        String givenName = "Toby";
+        Date givenBirthDate = new Date();
+        Integer givenID = 1;
+
+        Dog toby = new Dog(givenName, givenBirthDate, givenID);
+
+        String expectedPhrase = "bark!";
+
+        Assert.assertEquals(expectedPhrase, toby.speak());
+    }
+
+    @Test
+    public void setBirthDateTest() {
+        String givenName = "Toby";
+        Date givenBirthDate = new Date();
+        Integer givenID = 1;
+
+        Dog toby = new Dog(givenName, givenBirthDate, givenID);
+        Date newBirthDate = new Date(10/12/2010);
+        toby.setBirthDate(newBirthDate);
+
+        Assert.assertEquals(newBirthDate, toby.getBirthDate());
+    }
+
+    @Test
+    public void getIDTest() {
+        String givenName = "Toby";
+        Date givenBirthDate = new Date();
+        Integer givenID = 1;
+
+        Dog toby = new Dog(givenName, givenBirthDate, givenID);
+
+        Assert.assertEquals(givenID, toby.getId());
+    }
+
+    @Test
+    public void animalInheritanceTest() {
+        String givenName = "Toby";
+        Date givenBirthDate = new Date();
+        Integer givenID = 1;
+
+        Dog toby = new Dog(givenName, givenBirthDate, givenID);
+
+        boolean expectedReturn = true;
+
+        Assert.assertEquals(expectedReturn, toby instanceof Animal);
+    }
+
+    @Test
+    public void mammalInheritanceTest() {
+        String givenName = "Toby";
+        Date givenBirthDate = new Date();
+        Integer givenID = 1;
+
+        Dog toby = new Dog(givenName, givenBirthDate, givenID);
+
+        boolean expectedReturn = true;
+
+        Assert.assertEquals(expectedReturn, toby instanceof Mammal);
     }
 }

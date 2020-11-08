@@ -2,8 +2,11 @@ package rocks.zipcodewilmington;
 
 import org.junit.Assert;
 import org.junit.Test;
+import rocks.zipcodewilmington.animals.Animal;
 import rocks.zipcodewilmington.animals.Cat;
+import rocks.zipcodewilmington.animals.Mammal;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -38,6 +41,102 @@ public class CatTest {
         Assert.assertEquals(givenName, retrievedName);
         Assert.assertEquals(givenBirthDate, retrievedBirthDate);
         Assert.assertEquals(givenId, retrievedId);
+    }
+
+    @Test
+    public void setNameTest() {
+        String givenName = "Snaps";
+        Date givenBirthDate = new Date();
+        Integer givenID = 1;
+
+        String newName = "Mutton";
+
+        Cat snaps = new Cat(givenName, givenBirthDate, givenID);
+        snaps.setName(newName);
+
+        Assert.assertEquals(newName, snaps.getName());
+    }
+
+    @Test
+    public void speakTest() {
+        String givenName = "Snaps";
+        Date givenBirthDate = new Date();
+        Integer givenID = 1;
+
+        Cat snaps = new Cat(givenName, givenBirthDate, givenID);
+
+        String expectedPhrase = "meow!";
+
+        Assert.assertEquals(expectedPhrase, snaps.speak());
+    }
+
+    @Test
+    public void setBirthDateTest() {
+        String givenName = "Snaps";
+        Date givenBirthDate = new Date();
+        Integer givenID = 1;
+
+        Cat snaps = new Cat(givenName, givenBirthDate, givenID);
+
+        Date newBirthDate = new Date(7/12/13);
+        snaps.setBirthDate(newBirthDate);
+
+        Assert.assertEquals(newBirthDate, snaps.getBirthDate());
+    }
+
+    @Test
+    public void eatFoodTest() {
+        String givenName = "Snaps";
+        Date givenBirthDate = new Date();
+        Integer givenID = 1;
+
+        Cat snaps = new Cat(givenName, givenBirthDate, givenID);
+
+        Food spaghetti = new Food();
+        snaps.eat(spaghetti);
+        int expectedFoodListLength = 1;
+
+        Assert.assertEquals(java.util.Optional.of(expectedFoodListLength),
+                 java.util.Optional.ofNullable(snaps.getNumberOfMealsEaten()));
+    }
+
+    @Test
+    public void getIDTest() {
+        String givenName = "Snaps";
+        Date givenBirthDate = new Date();
+        Integer givenID = 1;
+
+        Cat snaps = new Cat(givenName, givenBirthDate, givenID);
+
+        Integer expectedID = 1;
+
+        Assert.assertEquals(expectedID, snaps.getId());
+    }
+
+    @Test
+    public void animalInheritanceTest() {
+        String givenName = "Snaps";
+        Date givenBirthDate = new Date();
+        Integer givenID = 1;
+
+        Cat snaps = new Cat(givenName, givenBirthDate, givenID);
+
+        boolean expectedReturn = true;
+
+        Assert.assertEquals(expectedReturn, snaps instanceof Animal);
+    }
+
+    @Test
+    public void mammalInheritanceTest() {
+        String givenName = "Snaps";
+        Date givenBirthDate = new Date();
+        Integer givenID = 1;
+
+        Cat snaps = new Cat(givenName, givenBirthDate, givenID);
+
+        boolean expectedReturn = true;
+
+        Assert.assertEquals(expectedReturn, snaps instanceof Mammal);
     }
 
 }
